@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  sandbox:
+    image: golang
+    volumes:
+      - ./sandbox:/sandbox
+    working_dir: /sandbox
+    tty: true
+
+  dns:
+    image: coredns/coredns
+
+  memcache:
+    image: memcached
+    expose:
+      - "11211/tcp"
+      - "11211/udp"
+    command: "memcached -U 11211"
+
+  chargen:
+    build:
+      dockerfile: ./docker/ubuntu/Dockerfile
+    expose:
+      - "19/udp"
+    tty: true
+    command: sh -c "service xinetd start; /bin/sh"
+
+  ntp:
+    build:
+      dockerfile: ./docker/ubuntu/Dockerfile
+    expose:
+      - "123/udp"
+    tty: true
+    command: sh -c "service ntp start; /bin/sh"
