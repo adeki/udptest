@@ -10,12 +10,17 @@ services:
 
   dns:
     image: coredns/coredns
+    ports:
+      - "53:53/udp"
 
   memcache:
     image: memcached
     expose:
       - "11211/tcp"
       - "11211/udp"
+    ports:
+      - "11211:11211/tcp"
+      - "11211:11211/udp"
     command: "memcached -U 11211"
 
   chargen:
@@ -23,6 +28,8 @@ services:
       dockerfile: ./docker/ubuntu/Dockerfile
     expose:
       - "19/udp"
+    ports:
+      - "19:19/udp"
     tty: true
     command: sh -c "service xinetd start; /bin/sh"
 
@@ -31,5 +38,7 @@ services:
       dockerfile: ./docker/ubuntu/Dockerfile
     expose:
       - "123/udp"
+    ports:
+      - "123:123/udp"
     tty: true
     command: sh -c "service ntp start; /bin/sh"
