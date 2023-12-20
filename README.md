@@ -18,4 +18,4 @@ $ docker-compose ps
 $ docker-compose exec sandbox go run protcol_check.go
 ```
 
-ローカルの ./sandbox 配下をマウントしているので、docker-compose.ymlのsandboxのイメージを他の言語にかえれば上記のようにつかえる（はず）
+ローカルの ./sandbox 配下をマウントしているので、sandbox配下に任意のスクリプトを設置し、docker-compose.ymlのsandboxのイメージを他の言語にかえれば上記のようにつかえる（はず）
