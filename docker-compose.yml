@@ -43,12 +43,14 @@ services:
     tty: true
     command: sh -c "service ntp start; /bin/sh"
 
-  nat-pmp:
+  miniupnp:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
     expose:
+      - "1900/udp"
       - "5351/udp"
     ports:
+      - "1900:1900/udp"
       - "5351:5351/udp"
     tty: true
     cap_add:
