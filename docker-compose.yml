@@ -42,3 +42,15 @@ services:
       - "123:123/udp"
     tty: true
     command: sh -c "service ntp start; /bin/sh"
+
+  nat-pmp:
+    build:
+      dockerfile: ./docker/ubuntu/Dockerfile
+    expose:
+      - "5351/udp"
+    ports:
+      - "5351:5351/udp"
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    command: sh -c "service miniupnpd start; /bin/sh"
