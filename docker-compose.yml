@@ -28,8 +28,10 @@ services:
       dockerfile: ./docker/ubuntu/Dockerfile
     expose:
       - "19/udp"
+      - "10019/udp"
     ports:
       - "19:19/udp"
+      - "10019:10019/udp"
     tty: true
     command: sh -c "service xinetd start; /bin/sh"
 
